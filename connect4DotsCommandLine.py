@@ -79,7 +79,7 @@ while not game_over:
             if winning_move(board, PLAYER_ONE_PIECE):
                 print("PLAYER ONE WIN!!!")
                 game_over = True
-        turn = PLAYER_TWO
+            turn = PLAYER_TWO
     else:
         col = int(input("Player Two Make Your Selection (0-6):"))
         if(is_valid_location(board, col)):
@@ -89,5 +89,5 @@ while not game_over:
             if winning_move(board, PLAYER_TWO_PIECE):
                 print("PLAYER TWO WIN!!!")
                 game_over = True
-        turn = PLAYER_ONE
+            turn = PLAYER_ONE
     print_board(board)

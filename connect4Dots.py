@@ -125,8 +125,7 @@ while not game_over:
                         label = myfont.render("Player 1 wins!!", 1, RED)
                         screen.blit(label, (40,10))
                         game_over = True
-
-                turn = PLAYER_TWO
+                    turn = PLAYER_TWO
             else:
                 posx = event.pos[0]
                 col = int(math.floor(posx/SQUARE_SIZE))
@@ -138,7 +137,7 @@ while not game_over:
                         label = myfont.render("Player 2 wins!!", 1, YELLOW)
                         screen.blit(label, (40,10))
                         game_over = True
-                turn = PLAYER_ONE
+                    turn = PLAYER_ONE
             draw_board(board)
             if game_over:
                 pygame.time.wait(3000)
