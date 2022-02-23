@@ -5,6 +5,8 @@ ROW_COUNT = 6
 COL_COUNT = 7
 PLAYER_ONE_PIECE = 1
 PLAYER_TWO_PIECE = 2
+PLAYER_ONE = 0
+PLAYER_TWO = 1
 
 # track if game is finished
 game_over = False
@@ -68,7 +70,7 @@ def winning_move(board, piece):
 print_board(board)
 
 while not game_over:
-    if turn == 0:
+    if turn == PLAYER_ONE:
         col = int(input("Player One Make Your Selection (0-6):"))
         if(is_valid_location(board, col)):
             row = get_next_open_row(board, col)
@@ -77,7 +79,7 @@ while not game_over:
             if winning_move(board, PLAYER_ONE_PIECE):
                 print("PLAYER ONE WIN!!!")
                 game_over = True
-        turn = 1
+        turn = PLAYER_TWO
     else:
         col = int(input("Player Two Make Your Selection (0-6):"))
         if(is_valid_location(board, col)):
@@ -87,5 +89,5 @@ while not game_over:
             if winning_move(board, PLAYER_TWO_PIECE):
                 print("PLAYER TWO WIN!!!")
                 game_over = True
-        turn = 0
+        turn = PLAYER_ONE
     print_board(board)

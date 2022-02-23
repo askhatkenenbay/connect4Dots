@@ -6,6 +6,9 @@ import math
 ROW_COUNT = 6
 COL_COUNT = 7
 
+PLAYER_ONE = 0
+PLAYER_TWO = 1
+
 PLAYER_ONE_PIECE = 1
 PLAYER_TWO_PIECE = 2
 
@@ -76,9 +79,9 @@ def draw_board(board):
 
     for c in range(COL_COUNT):
         for r in range(ROW_COUNT):		
-            if board[r][c] == 1:
+            if board[r][c] == PLAYER_ONE_PIECE:
                 pygame.draw.circle(screen, RED, (int(c*SQUARE_SIZE+SQUARE_SIZE/2), height-int(r*SQUARE_SIZE+SQUARE_SIZE/2)), RADIUS)
-            elif board[r][c] == 2: 
+            elif board[r][c] == PLAYER_TWO_PIECE: 
                 pygame.draw.circle(screen, YELLOW, (int(c*SQUARE_SIZE+SQUARE_SIZE/2), height-int(r*SQUARE_SIZE+SQUARE_SIZE/2)), RADIUS)
     pygame.display.update()
 
@@ -103,7 +106,7 @@ while not game_over:
         if event.type == pygame.MOUSEMOTION:
             pygame.draw.rect(screen, BLACK, (0,0, width, SQUARE_SIZE))
             posx = event.pos[0]
-            if turn == 0:
+            if turn == PLAYER_ONE:
                 pygame.draw.circle(screen, RED, (posx, int(SQUARE_SIZE/2)), RADIUS)
             else: 
                 pygame.draw.circle(screen, YELLOW, (posx, int(SQUARE_SIZE/2)), RADIUS)
@@ -111,7 +114,7 @@ while not game_over:
         # process mouse click
         if event.type == pygame.MOUSEBUTTONDOWN:
             pygame.draw.rect(screen, BLACK, (0,0, width, SQUARE_SIZE))
-            if turn == 0:
+            if turn == PLAYER_ONE:
                 posx = event.pos[0]
                 col = int(math.floor(posx/SQUARE_SIZE))
                 if(is_valid_location(board, col)):
@@ -123,7 +126,7 @@ while not game_over:
                         screen.blit(label, (40,10))
                         game_over = True
 
-                turn = 1
+                turn = PLAYER_TWO
             else:
                 posx = event.pos[0]
                 col = int(math.floor(posx/SQUARE_SIZE))
@@ -135,7 +138,7 @@ while not game_over:
                         label = myfont.render("Player 2 wins!!", 1, YELLOW)
                         screen.blit(label, (40,10))
                         game_over = True
-                turn = 0
+                turn = PLAYER_ONE
             draw_board(board)
             if game_over:
                 pygame.time.wait(3000)
